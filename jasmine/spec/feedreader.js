@@ -99,9 +99,25 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        // Ref : https://discussions.udacity.com/t/p6-new-feed-selection-test-question-problem/15562/11
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                initFeed = $('.feed').html();
+                done();
+            });
+        });
+        
+        it('changes content', function (done) {
+            loadFeed(1, function () {
+                expect($('.feed').html()).not.toBe(initFeed);
+                done();
+            });
+        });
+    });
 }());
